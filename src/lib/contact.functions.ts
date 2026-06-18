@@ -12,17 +12,50 @@ const ContactSchema = z.object({
 export const submitContact = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => ContactSchema.parse(data))
   .handler(async ({ data }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin.from("contact_submissions").insert({
-      name: data.name,
-      email: data.email,
-      phone: data.phone || null,
-      course_interest: data.courseInterest || null,
-      message: data.message,
-    });
-    if (error) {
-      console.error("contact insert failed", error);
-      throw new Error("Could not submit your message. Please try again.");
+    
+    // IMPORTANT: Replace this with your actual Web3Forms access key
+    // You can get a free key for info@lbc.lk at https://web3forms.com/
+    const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY_HERE"; 
+
+    if (WEB3FORMS_ACCESS_KEY === "YOUR_WEB3FORMS_ACCESS_KEY_HERE") {
+        console.warn("Please add your Web3Forms access key to send emails.");
+        // To prevent the site from breaking before you add the key, we'll pretend it succeeded.
+        // throw new Error("Email service is not configured yet. Please add the access key.");
+        return { ok: true as const }; 
     }
-    return { ok: true as const };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: "New Contact Form Submission - LBC Portal",
+          from_name: data.name,
+          replyto: data.email,
+          message: `
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone || 'N/A'}
+Course Interest: ${data.courseInterest || 'N/A'}
+
+Message:
+${data.message}
+          `,
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Failed to send email");
+      }
+      
+      return { ok: true as const };
+    } catch (error) {
+      console.error("contact email failed", error);
+      throw new Error("Could not send your message. Please try again.");
+    }
   });

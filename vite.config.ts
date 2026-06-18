@@ -15,4 +15,9 @@ export default defineConfig({
   nitro: {
     preset: process.env.VERCEL ? "vercel" : process.env.NETLIFY ? "netlify" : "node-server",
   },
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 1500, // Increased to suppress the chunk size warning
+    },
+  },
 });

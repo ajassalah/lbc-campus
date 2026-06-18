@@ -105,7 +105,7 @@ export function Navbar() {
       >
         <div className="container-page flex h-16 items-center justify-between md:h-20">
           <Link to="/" className="flex items-center gap-3">
-            <img src="/images/lbc-logo-new.png" alt="LBC crest" className="h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16 object-contain" />
+            <img src="/images/lbc-logo-new.png" alt="LBC crest" className="h-20 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" />
             <div className="leading-tight">
               <div className="font-display text-base font-bold text-primary sm:text-lg md:text-xl">
                 London Business Campus
@@ -231,9 +231,9 @@ export function Navbar() {
                 <MobileLink to="/" onClick={() => setOpen(false)}>Home</MobileLink>
                 <Accordion type="single" collapsible>
                   <AccordionItem value="courses" className="border-b-0">
-                    <AccordionTrigger className="py-2 text-sm font-medium hover:no-underline">Courses</AccordionTrigger>
+                    <AccordionTrigger className="px-2 py-2 text-sm font-medium hover:no-underline">Courses</AccordionTrigger>
                     <AccordionContent>
-                      <div className="ml-2 flex flex-col">
+                      <div className="ml-4 flex flex-col border-l border-border/50 pl-2">
                         {coursesLinks.map((l) => (
                           <MobileLink key={l.to} to={l.to} onClick={() => setOpen(false)}>{l.label}</MobileLink>
                         ))}
@@ -244,9 +244,9 @@ export function Navbar() {
                 <MobileLink to="/fast-track" onClick={() => setOpen(false)}>Fast Track</MobileLink>
                 <Accordion type="single" collapsible>
                   <AccordionItem value="about" className="border-b-0">
-                    <AccordionTrigger className="py-2 text-sm font-medium hover:no-underline">About Us</AccordionTrigger>
+                    <AccordionTrigger className="px-2 py-2 text-sm font-medium hover:no-underline">About Us</AccordionTrigger>
                     <AccordionContent>
-                      <div className="ml-2 flex flex-col">
+                      <div className="ml-4 flex flex-col border-l border-border/50 pl-2">
                         {aboutLinks.map((l) => (
                           <MobileLink key={l.to} to={l.to} onClick={() => setOpen(false)}>{l.label}</MobileLink>
                         ))}

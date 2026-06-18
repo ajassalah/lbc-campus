@@ -107,7 +107,7 @@ function Page() {
           <div className="rounded-2xl border border-border bg-card p-6">
             <h2 className="font-semibold text-primary">Visit our campus</h2>
             <ul className="mt-4 space-y-3 text-sm">
-              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" /> No. 49, Galle Road, Colombo 03, Sri Lanka</li>
+              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" /> No. 16, Beltona Lane, Colombo 04, Sri Lanka</li>
               <li><a href="tel:+94112589202" className="flex items-center gap-2 text-foreground hover:text-primary"><Phone className="h-4 w-4 text-accent" /> +94 112 589 202</a></li>
               <li><a href="mailto:info@lbc.lk" className="flex items-center gap-2 text-foreground hover:text-primary"><Mail className="h-4 w-4 text-accent" /> info@lbc.lk</a></li>
             </ul>
