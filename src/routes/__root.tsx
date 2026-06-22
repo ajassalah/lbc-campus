@@ -142,6 +142,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script id="chatway" async src="https://cdn.chatway.app/widget.js?id=IBBgGxW3x0xe"></script>
       </head>
       <body>
         {children}
