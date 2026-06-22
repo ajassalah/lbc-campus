@@ -49,7 +49,7 @@ export function CourseCard({ course }: { course: Course }) {
         </div>
         <Button
           asChild
-          className="mt-5 w-full bg-primary text-primary-foreground hover:bg-primary/90"
+          className="mt-auto w-full bg-primary text-primary-foreground hover:bg-primary/90"
         >
           <Link to="/courses/$courseId" params={{ courseId: course.slug }}>
             Get Enrolled

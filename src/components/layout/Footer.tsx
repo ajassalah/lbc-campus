@@ -78,7 +78,7 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/10 hidden sm:block">
         <div className="container-page flex flex-col items-center justify-between gap-4 py-5 text-xs text-primary-foreground/70 sm:flex-row">
           <span className="sm:flex-1">© {new Date().getFullYear()} London Business Campus. All rights reserved.</span>
           <span className="sm:flex-1 sm:text-center">Powered by <a href="https://levelweb.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-accent">Levelweb.co.uk</a></span>

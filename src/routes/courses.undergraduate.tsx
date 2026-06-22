@@ -17,15 +17,15 @@ export const Route = createFileRoute("/courses/undergraduate")({
   component: Page,
 });
 
+import { FilteredCourseGrid } from "@/components/courses/FilteredCourseGrid";
+
 function Page() {
   const list = courses.filter((c) => c.group === "Undergraduate");
   return (
     <>
       <PageHero eyebrow="Courses" title="Undergraduate Programs" subtitle="Level 4 to Level 6 UK-accredited diplomas and Bachelor's degrees." />
       <section className="container-page py-12 md:py-16">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((c) => <CourseCard key={c.id} course={c} />)}
-        </div>
+        <FilteredCourseGrid initialCourses={list} />
       </section>
     </>
   );

@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { PageHero } from "@/components/common/PageHero";
 import { submitContact } from "@/lib/contact.functions";
-import { categories } from "@/data/courses";
+import { courses, categories } from "@/data/courses";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -35,6 +35,7 @@ export const Route = createFileRoute("/contact")({
 function Page() {
   const submit = useServerFn(submitContact);
   const [pending, setPending] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -78,9 +79,9 @@ function Page() {
               <Input id="phone" name="phone" maxLength={40} className="mt-1.5" />
             </div>
             <div>
-              <Label htmlFor="courseInterest">Course of interest</Label>
-              <Select name="courseInterest">
-                <SelectTrigger className="mt-1.5"><SelectValue placeholder="Choose a category" /></SelectTrigger>
+              <Label htmlFor="courseCategory">Category of interest</Label>
+              <Select onValueChange={setSelectedCategory} value={selectedCategory}>
+                <SelectTrigger id="courseCategory" className="mt-1.5"><SelectValue placeholder="Choose a category" /></SelectTrigger>
                 <SelectContent>
                   {categories.map((c) => (
                     <SelectItem key={c} value={c}>{c}</SelectItem>
@@ -88,6 +89,19 @@ function Page() {
                 </SelectContent>
               </Select>
             </div>
+            {selectedCategory && (
+              <div>
+                <Label htmlFor="courseInterest">Select your Course</Label>
+                <Select name="courseInterest">
+                  <SelectTrigger id="courseInterest" className="mt-1.5"><SelectValue placeholder="Choose a course" /></SelectTrigger>
+                  <SelectContent className="w-[var(--radix-select-trigger-width)] [&_*]:whitespace-normal">
+                    {courses.filter(c => c.category === selectedCategory).map((c) => (
+                      <SelectItem key={c.id} value={c.title}>{c.title}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
           </div>
           <div className="mt-4">
             <Label htmlFor="message">Message *</Label>

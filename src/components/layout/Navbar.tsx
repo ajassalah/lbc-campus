@@ -269,6 +269,11 @@ export function Navbar() {
                   <a href="tel:+94112589202" className="flex items-center gap-2"><Phone className="h-4 w-4" /> +94 112 589 202</a>
                   <a href="mailto:info@lbc.lk" className="flex items-center gap-2"><Mail className="h-4 w-4" /> info@lbc.lk</a>
                 </div>
+                <div className="mt-4 border-t pt-4 flex flex-col gap-1 text-[10px] text-muted-foreground">
+                  <span>© {new Date().getFullYear()} London Business Campus. All rights reserved.</span>
+                  <span>Powered by <a href="https://levelweb.co.uk" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Levelweb.co.uk</a></span>
+                  <span>Recognize yourself with LBC.</span>
+                </div>
               </nav>
             </SheetContent>
           </Sheet>
@@ -321,7 +326,7 @@ export function Navbar() {
                             {course.category} · {course.level}
                           </div>
                         </div>
-                        <div className="text-xs font-bold text-primary ml-2 shrink-0">{course.price}</div>
+                        <div className="text-xs font-bold text-primary ml-2 shrink-0">Course Fee</div>
                       </button>
                     ))
                   ) : (

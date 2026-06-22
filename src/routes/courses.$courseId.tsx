@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { courses, type Course } from "@/data/courses";
+import { CourseCard } from "@/components/courses/CourseCard";
 
 function findCourse(idParam: string): Course | undefined {
   const id = idParam.toLowerCase();
@@ -69,6 +70,15 @@ export const Route = createFileRoute("/courses/$courseId")({
 
 function CourseDetailPage() {
   const { course } = Route.useLoaderData();
+
+  const relatedCourses = courses
+    .filter((c) => c.category === course.category && c.id !== course.id)
+    .slice(0, 4);
+    
+  if (relatedCourses.length < 4) {
+    const otherCourses = courses.filter((c) => c.id !== course.id && !relatedCourses.includes(c));
+    relatedCourses.push(...otherCourses.slice(0, 4 - relatedCourses.length));
+  }
 
   const modules = course.units || [
     { title: "Orientation & Programme Overview", weeks: "Week 1" },
@@ -266,6 +276,16 @@ function CourseDetailPage() {
             </div>
           </div>
         </aside>
+      </section>
+
+      {/* Related Courses */}
+      <section className="container-page py-12 lg:py-16 border-t border-border">
+        <h2 className="font-display text-2xl font-bold text-primary mb-6">Related courses</h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {relatedCourses.map((c) => (
+            <CourseCard key={c.id} course={c} />
+          ))}
+        </div>
       </section>
     </div>
   );

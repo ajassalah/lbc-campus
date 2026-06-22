@@ -98,11 +98,11 @@ function HomePage() {
             </p>
             <div className="mt-8 flex flex-col w-full sm:w-auto sm:flex-row flex-wrap justify-center md:justify-start gap-4">
               <Button
-                onClick={() => document.getElementById("featured-programs")?.scrollIntoView({ behavior: "smooth" })}
+                asChild
                 size="lg"
-                className="bg-accent text-accent-foreground hover:bg-accent/90 text-base font-semibold px-6 py-6 cursor-pointer w-full sm:w-auto"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 text-base font-semibold px-6 py-6 w-full sm:w-auto"
               >
-                Browse Programmes
+                <Link to="/courses">Browse Programmes</Link>
               </Button>
               <Button
                 asChild

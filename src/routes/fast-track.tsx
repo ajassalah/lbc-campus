@@ -45,7 +45,7 @@ function Page() {
       />
       {list.length > 0 && (
         <section className="container-page py-12">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto">
             {list.map((c) => <CourseCard key={c.id} course={c} />)}
           </div>
         </section>
