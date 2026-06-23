@@ -39,7 +39,8 @@ function Page() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const f = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const f = new FormData(form);
     const payload = {
       name: String(f.get("name") ?? ""),
       email: String(f.get("email") ?? ""),
@@ -51,7 +52,8 @@ function Page() {
     try {
       await submit({ data: payload });
       toast.success("Thanks! An admissions advisor will reply within one business day.");
-      e.currentTarget.reset();
+      form.reset();
+      setSelectedCategory("");
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Something went wrong.";
       toast.error(msg);
