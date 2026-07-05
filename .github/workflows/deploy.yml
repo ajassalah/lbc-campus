@@ -1,0 +1,111 @@
+name: Deploy to VPS
+
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - uses: actions/checkout@v4
+
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+
+      - run: npm ci
+
+
+      - run: npm run build
+        env:
+          NITRO_PRESET: node-server
+
+
+      - name: Prepare bundle
+        run: |
+          rm -rf deploy
+          test -f .output/server/index.mjs
+          mkdir -p deploy
+          cp -a .output/. deploy/
+          tar -czf release.tar.gz -C deploy .
+
+
+      - name: Upload bundle
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+          scp -i ~/.ssh/deploy_key -P "$DEPLOY_PORT" release.tar.gz "$DEPLOY_USER@$DEPLOY_HOST:/tmp/release.tar.gz"
+
+
+      - name: Activate release
+        uses: appleboy/ssh-action@v1.2.5
+        env:
+          APP_ROOT: ${{ secrets.DEPLOY_PATH }}
+          APP_NAME: ${{ secrets.APP_NAME }}
+          APP_PORT: ${{ secrets.APP_PORT }}
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          envs: APP_ROOT,APP_NAME,APP_PORT
+          script: |
+            set -eu
+
+
+            SHARED_DIR="$APP_ROOT/shared"
+            RELEASES_DIR="$APP_ROOT/releases"
+            CURRENT_LINK="$APP_ROOT/current"
+            RELEASE_DIR="$RELEASES_DIR/$(date +%Y%m%d%H%M%S)"
+
+
+            mkdir -p "$SHARED_DIR" "$RELEASES_DIR" "$RELEASE_DIR"
+
+
+            if [ ! -f "$SHARED_DIR/.env.production" ]; then
+              echo "Missing $SHARED_DIR/.env.production"
+              exit 1
+            fi
+
+
+            tar -xzf /tmp/release.tar.gz -C "$RELEASE_DIR"
+            ln -sfn "$SHARED_DIR/.env.production" "$RELEASE_DIR/.env.production"
+            ln -sfn "$RELEASE_DIR" "$CURRENT_LINK"
+
+
+            cd "$CURRENT_LINK"
+            set -a
+            . "$SHARED_DIR/.env.production"
+            set +a
+
+
+            pm2 delete "$APP_NAME" 2>/dev/null || true
+            env HOST=0.0.0.0 PORT="$APP_PORT" NODE_ENV=production \
+              pm2 start server/index.mjs --name "$APP_NAME"
+
+
+            pm2 save
+            rm -f /tmp/release.tar.gz
+            ls -1dt "$RELEASES_DIR"/* 2>/dev/null | tail -n +6 | xargs -r rm -rf
