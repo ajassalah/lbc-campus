@@ -72,9 +72,8 @@ export function Navbar() {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <a href="#" aria-label="Facebook" className="hover:text-accent"><Facebook className="h-4 w-4" /></a>
-            <a href="#" aria-label="Twitter" className="hover:text-accent"><Twitter className="h-4 w-4" /></a>
-            <a href="#" aria-label="Instagram" className="hover:text-accent"><Instagram className="h-4 w-4" /></a>
+            <a href="https://www.facebook.com/profile.php?id=61592729585452" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Facebook className="h-4 w-4" /></a>
+            <a href="https://www.instagram.com/lbc_lk?igsh=MTU1ZGZyMnExdjJiZw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Instagram className="h-4 w-4" /></a>
             <span className="mx-2 h-4 w-px bg-primary-foreground/20" />
             <a
               href="https://student.lbc.edu.lk/"

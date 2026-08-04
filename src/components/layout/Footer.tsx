@@ -31,8 +31,8 @@ export function Footer() {
             qualifications accessible, flexible and affordable.
           </p>
           <div className="mt-5 flex items-center gap-3">
-            <a href="https://www.facebook.com/profile.php?id=61592729585452" aria-label="Facebook" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Facebook className="h-4 w-4" /></a>
-            <a href="https://www.instagram.com/lbc_lk?igsh=MTU1ZGZyMnExdjJiZw==" aria-label="Instagram" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Instagram className="h-4 w-4" /></a>
+            <a href="https://www.facebook.com/profile.php?id=61592729585452" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Facebook className="h-4 w-4" /></a>
+            <a href="https://www.instagram.com/lbc_lk?igsh=MTU1ZGZyMnExdjJiZw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Instagram className="h-4 w-4" /></a>
 
           </div>
         </div>
