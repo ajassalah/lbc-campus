@@ -64,8 +64,8 @@ export function Navbar() {
       <div className="hidden bg-primary text-primary-foreground md:block">
         <div className="container-page flex h-10 items-center justify-between text-xs">
           <div className="flex items-center gap-6">
-            <a href="tel:+94112589202" className="inline-flex items-center gap-2 hover:text-accent">
-              <Phone className="h-3.5 w-3.5" /> +94 112 589 202
+            <a href="tel:+94779921711" className="inline-flex items-center gap-2 hover:text-accent">
+              <Phone className="h-3.5 w-3.5" /> +94 77 9921 711
             </a>
             <a href="mailto:info@lbc.lk" className="inline-flex items-center gap-2 hover:text-accent">
               <Mail className="h-3.5 w-3.5" /> info@lbc.lk

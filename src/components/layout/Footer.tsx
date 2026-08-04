@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { WhatsAppIcon } from "@/components/common/WhatsAppIcon";
 
 const quickLinks = [
   { to: "/about", label: "About Us" },
@@ -30,9 +31,9 @@ export function Footer() {
             qualifications accessible, flexible and affordable.
           </p>
           <div className="mt-5 flex items-center gap-3">
-            <a href="#" aria-label="Facebook" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Facebook className="h-4 w-4" /></a>
-            <a href="#" aria-label="Twitter" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Twitter className="h-4 w-4" /></a>
-            <a href="#" aria-label="Instagram" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Instagram className="h-4 w-4" /></a>
+            <a href="https://www.facebook.com/profile.php?id=61592729585452" aria-label="Facebook" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Facebook className="h-4 w-4" /></a>
+            <a href="https://www.instagram.com/lbc_lk?igsh=MTU1ZGZyMnExdjJiZw==" aria-label="Instagram" className="rounded-full bg-white/10 p-2 hover:bg-accent hover:text-accent-foreground"><Instagram className="h-4 w-4" /></a>
+
           </div>
         </div>
 
@@ -66,8 +67,13 @@ export function Footer() {
               <span>No. 16, Beltona Lane, Colombo 04, Sri Lanka</span>
             </li>
             <li>
-              <a href="tel:+94112589202" className="flex items-center gap-2 hover:text-accent">
-                <Phone className="h-4 w-4 text-accent" /> +94 112 589 202
+              <a href="tel:+94779921711" className="flex items-center gap-2 hover:text-accent">
+                <Phone className="h-4 w-4 text-accent" /> +94 77 9921 711
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/94779921711" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent">
+                <WhatsAppIcon className="h-4 w-4 shrink-0 text-accent" /> +94 77 9921 711
               </a>
             </li>
             <li>
