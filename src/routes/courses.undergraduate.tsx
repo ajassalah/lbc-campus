@@ -7,7 +7,7 @@ export const Route = createFileRoute("/courses/undergraduate")({
   head: () => ({
     meta: [
       { title: "Undergraduate Programs — London Business Campus" },
-      { name: "description", content: "UK-accredited Level 4, 5 and 6 undergraduate degrees and diplomas at LBC — business, IT, health care, law, engineering and more." },
+      { name: "description", content: "UK-accredited Level 4, 5 and 6 undergraduate degrees and diplomas at LBC — business, IT, Health & Social Care, law, engineering and more." },
       { property: "og:title", content: "Undergraduate Programs at LBC" },
       { property: "og:description", content: "Level 4–6 UK-accredited diplomas and Bachelor's degrees taught in Colombo." },
       { property: "og:url", content: "/courses/undergraduate" },

@@ -26,7 +26,7 @@ import { courses, type CourseCategory } from "@/data/courses";
 import { useState } from "react";
 
 const cats: { label: CourseCategory; icon: typeof Briefcase }[] = [
-  { label: "Health Care", icon: HeartPulse },
+  { label: "Health & Social Care", icon: HeartPulse },
   { label: "Information Technology", icon: Cpu },
   { label: "Business Management", icon: Briefcase },
   { label: "Tourism & Hospitality", icon: Plane },
@@ -114,7 +114,6 @@ function HomePage() {
             </div>
             <div className="mt-8 flex flex-wrap justify-center md:justify-start items-center gap-6 text-xs text-primary-foreground/70">
               <span>CQHE</span>
-              <span>LMQ</span>
             </div>
           </div>
         </div>
@@ -185,7 +184,7 @@ function HomePage() {
               <div className="flex animate-[marquee_40s_linear_infinite_alternate] min-w-full shrink-0 items-center justify-center gap-[--gap] group-hover:[animation-play-state:paused]">
                 {[
 
-                  { src: "/images/london%20managment.jpeg", href: "https://lmqawards.org.uk/" },
+                  
                   { src: "https://cqhe.org.uk/cghe_logo.png", href: "https://cqhe.org.uk/" }
                 ].map((partner, i) => (
                   <a href={partner.href} target="_blank" rel="noopener noreferrer" key={i} className="p-4 hover:scale-105 transition-all shrink-0">
@@ -199,7 +198,7 @@ function HomePage() {
               </div>
               <div className="flex animate-[marquee_40s_linear_infinite_alternate] min-w-full shrink-0 items-center justify-center gap-[--gap] group-hover:[animation-play-state:paused]" aria-hidden="true">
                 {[
-                  { src: "/images/london%20managment.jpeg", href: "https://lmqawards.org.uk/" },
+                  
                   { src: "https://cqhe.org.uk/cghe_logo.png", href: "https://cqhe.org.uk/" }
                 ].map((partner, i) => (
                   <a href={partner.href} target="_blank" rel="noopener noreferrer" key={`dup-${i}`} className="p-4 hover:scale-105 transition-all shrink-0">
@@ -226,7 +225,7 @@ function HomePage() {
           <SectionHeader
             eyebrow="Student Voices"
             title="What our graduates say"
-            subtitle="Real outcomes from real LBC students — across health care, business, law, engineering and more."
+            subtitle="Real outcomes from real LBC students — across Health & Social Care, business, law, engineering and more."
           />
           <div className="mt-12">
             <TestimonialCarousel />

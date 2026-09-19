@@ -8,6 +8,7 @@ export function FilteredCourseGrid({ initialCourses }: { initialCourses: Course[
   const [q, setQ] = useState("");
   const [category, setCategory] = useState("all");
   const [level, setLevel] = useState("all");
+  const [group, setGroup] = useState("all");
   const [showAll, setShowAll] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -23,25 +24,36 @@ export function FilteredCourseGrid({ initialCourses }: { initialCourses: Course[
     return initialCourses.filter((c) => {
       if (category !== "all" && c.category !== category) return false;
       if (level !== "all" && c.level !== level) return false;
+      if (group !== "all" && c.group !== group) return false;
       if (qq) {
-        const hay = `${c.title} ${c.category} ${c.awardingBody} ${c.description}`.toLowerCase();
+        const hay = `${c.title} ${c.category} ${c.group} ${c.level} ${c.awardingBody} ${c.description}`.toLowerCase();
         if (!hay.includes(qq)) return false;
       }
       return true;
     });
-  }, [initialCourses, q, category, level]);
+  }, [initialCourses, q, category, level, group]);
 
   // Reset showAll when filters change
   useEffect(() => {
     setShowAll(false);
-  }, [q, category, level]);
+  }, [q, category, level, group]);
 
   const limit = isMobile ? 9 : 10;
-  const displayed = showAll ? filtered : filtered.slice(0, limit);
+  const sorted = useMemo(() => [...filtered].reverse(), [filtered]);
+  const displayed = showAll ? sorted : sorted.slice(0, limit);
 
   return (
     <div className="w-full">
-      <CourseFilters q={q} setQ={setQ} category={category} setCategory={setCategory} level={level} setLevel={setLevel} />
+      <CourseFilters
+        q={q}
+        setQ={setQ}
+        category={category}
+        setCategory={setCategory}
+        level={level}
+        setLevel={setLevel}
+        group={group}
+        setGroup={setGroup}
+      />
       <div className="mt-4 text-sm text-muted-foreground">
         Showing <strong>{displayed.length}</strong> of {filtered.length} courses
       </div>
@@ -57,7 +69,7 @@ export function FilteredCourseGrid({ initialCourses }: { initialCourses: Course[
               <CourseCard key={c.id} course={c} />
             ))}
           </div>
-          {!showAll && filtered.length > limit && (
+          {!showAll && sorted.length > limit && (
             <div className="mt-10 flex justify-center">
               <Button variant="outline" size="lg" onClick={() => setShowAll(true)}>
                 Load More

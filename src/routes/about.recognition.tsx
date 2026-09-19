@@ -2,12 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/common/PageHero";
 
 const recognitions = [
-  {
-    name: "London Management Qualifications (LMQ)",
-    logo: "/images/london managment.jpeg",
-    description:
-      "The London Management Qualifications (LMQ) is a UK based awarding organisation credit rated by SCQF validating a set of innovative programmes covering a range of levels of study. LMQ has accredited delivery centres who work in partnership with LMQ to deliver our curriculum globally. The LMQ awards allow partners to use a variety of assessment tools to provide training and development opportunities for the learners.",
-  },
+  
   {
     name: "Centre for Qualification and Higher Education (CQHE)",
     logo: "/images/cghe_logo.png",

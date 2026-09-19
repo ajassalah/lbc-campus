@@ -6,7 +6,7 @@ export const Route = createFileRoute("/about/accreditation")({
   head: () => ({
     meta: [
       { title: "Accreditation — London Business Campus" },
-      { name: "description", content: "London Business Campus is recognised by CQHE and LMQ, UK based awarding organisations." },
+      { name: "description", content: "London Business Campus is recognised by CQHE , UK based awarding organisations." },
     ],
   }),
   component: Page,
@@ -23,7 +23,7 @@ function Page() {
               We are a decade old institution having rich experience in the field of Management Education. The college was established in the year 2017 with a focus on providing top quality Management education.
             </p>
             <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
-              LBC is recognised by CQHE and LMQ, prestigious awarding bodies providing high-quality UK qualifications.
+              LBC is recognised by CQHE, prestigious awarding bodies providing high-quality UK qualifications.
             </p>
           </div>
           <div className="rounded-2xl overflow-hidden shadow-xl">

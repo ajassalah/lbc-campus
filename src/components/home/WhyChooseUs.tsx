@@ -4,7 +4,7 @@ const items = [
   {
     icon: Award,
     title: "Professional",
-    body: "UK-accredited qualifications recognised by leading awarding bodies including CQHE, LMQ, Pearson BTEC and CILT.",
+    body: "UK-accredited qualifications recognised by leading awarding bodies including CQHE,",
   },
   {
     icon: Clock,
